@@ -61,12 +61,44 @@ var customerReviewsSlider = new Swiper(".customer-reviews-slider", {
 
 /* ZOOM BTN */
 document.addEventListener("DOMContentLoaded", function () {
-  var zoomButtons = document.querySelectorAll(".zoom-btn");
-  zoomButtons.forEach(function (zoomButton) {
-      zoomButton.addEventListener("click", function () {
-          var mainSlider = document.querySelector(".main-slider");
-          mainSlider.classList.toggle("fullscreen");
-      });
+  function fullscreenToggle(type) {
+    var sliderContainer = document.querySelector('.main-slider');
+    // console.log(type)
+    switch(type) {
+      case 'zoom':
+        sliderContainer.classList.toggle('fullscreen')
+        console.log(type)
+        break;
+      case 'image':
+        sliderContainer.classList.add('fullscreen')
+        break;
+      case 'swiper-slide':
+        sliderContainer.classList.remove('fullscreen')
+        break;
+    }
+  }
+
+  let mainSliderImages = document.querySelectorAll('.main-slider-top .swiper-slide img');
+  let zoomBtns = document.querySelectorAll('.main-slider-top .swiper-slide .zoom-btn');
+  
+  mainSliderImages.forEach(image => {
+    image.addEventListener('click', (event) => {
+      fullscreenToggle('image')
+      event.stopPropagation;
+    });
+  });
+
+  zoomBtns.forEach(zoomBtn => {
+    zoomBtn.addEventListener('click', () => {
+      fullscreenToggle('zoom')
+    });
+  });
+
+
+  document.addEventListener('click', function(event) {
+    if (!event.target.matches(".main-slider-top .swiper-slide img") && !event.target.matches(".main-slider-top .swiper-slide .zoom-btn")) {
+      fullscreenToggle('swiper-slide')
+    }
   });
 });
 
