@@ -165,11 +165,11 @@ main {
 }
 .main-slider.fullscreen .main-slider-top .swiper-slide img {
     object-fit: cover;
-    height: 450px;
+    height: 340px;
 }
 .main-slider.fullscreen .main-slider-top video {
     object-fit: cover;
-    height: 450px;
+    height: 340px;
 }
 .main-slider.fullscreen .swiper.main-slider-bottom {
     display: none;
